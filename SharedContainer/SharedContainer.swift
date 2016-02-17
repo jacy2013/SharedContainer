@@ -24,10 +24,12 @@ public class SharedContainer{
         return result
     }
     
-    public static func deleteFile(path:String){
+    public static func deleteFile(name:String) {
         do{
             print(path)
-            try fileManager.removeItemAtPath(path)
+            print(name)
+            try fileManager.removeItemAtPath("\(path)/\(name)")
+            
         }catch{
             print("deleteFile erro")
         }
@@ -46,11 +48,11 @@ public class SharedContainer{
     
     public static func getFileList() -> [File]? {
         var result = [File]()
-        var paths:[String]
+        var names:[String]
         do{
-            paths = try fileManager.contentsOfDirectoryAtPath(path)
-            for path in paths {
-                let file = File(absoluteURL: pathURL.URLByAppendingPathComponent(path))
+            names = try fileManager.contentsOfDirectoryAtPath(path)
+            for name in names {
+                let file = File(absoluteURL: pathURL.URLByAppendingPathComponent(name))
                 result.append(file)
             }
             return result
@@ -64,7 +66,7 @@ public class SharedContainer{
         return NSData(contentsOfURL: pathURL.URLByAppendingPathComponent(name))!
     }
     
-    public static func getFileData(absolutePath:NSURL) ->NSData{
+    public static func getFileData(absolutePath:NSURL) -> NSData{
         return NSData(contentsOfURL: absolutePath)!
     }
     
