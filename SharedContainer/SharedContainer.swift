@@ -46,7 +46,7 @@ public class SharedContainer{
         return nil
     }
     
-    public static func getFileList() -> [File]? {
+    public static func getFileList() -> [File] {
         var result = [File]()
         var names:[String]
         do{
@@ -59,7 +59,7 @@ public class SharedContainer{
         }catch{
             print("getFileNameList erro")
         }
-        return nil
+        return result
     }
     
     public static func getFileData(name:String) -> NSData {
