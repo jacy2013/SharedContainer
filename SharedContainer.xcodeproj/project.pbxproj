@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		244A83151C7C62DA005A91F8 /* SharedContainer.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 244A83141C7C62DA005A91F8 /* SharedContainer.podspec */; };
 		24AFE7C91C5EF3740090126F /* SharedContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 24AFE7C81C5EF3740090126F /* SharedContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		24AFE7D11C5EF37F0090126F /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AFE7D01C5EF37F0090126F /* File.swift */; };
 		24AFE7D31C5EF38B0090126F /* SharedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AFE7D21C5EF38B0090126F /* SharedContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		244A83141C7C62DA005A91F8 /* SharedContainer.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SharedContainer.podspec; sourceTree = "<group>"; };
 		24AFE7C51C5EF3740090126F /* SharedContainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedContainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24AFE7C81C5EF3740090126F /* SharedContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedContainer.h; sourceTree = "<group>"; };
 		24AFE7CA1C5EF3740090126F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,6 +38,7 @@
 			children = (
 				24AFE7C71C5EF3740090126F /* SharedContainer */,
 				24AFE7C61C5EF3740090126F /* Products */,
+				244A83141C7C62DA005A91F8 /* SharedContainer.podspec */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +129,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				244A83151C7C62DA005A91F8 /* SharedContainer.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

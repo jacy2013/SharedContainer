@@ -7,28 +7,48 @@
 //
 
 import Foundation
+import RealmSwift
+
 public class SharedContainer{
-    public static func p(){
-        print("DDDDDff")
-    }
+    
     static let groupID = "group.com.100tv.TransPadQ"
     static let folderPath = "Library/Caches"
     static let fileManager = NSFileManager.defaultManager()
     static let pathURL = fileManager.containerURLForSecurityApplicationGroupIdentifier(groupID)!.URLByAppendingPathComponent(folderPath)
     static let path = pathURL.path!
     
+    static let shareDefault = NSUserDefaults(suiteName: groupID)!
+    
+    static let realmPath = pathURL.URLByAppendingPathComponent("share.realm").path!
+    
+    public static func initial(){
+        print(path)
+    }
+    
     public static func writeFile(data:NSData,name:String) -> Bool {
         let result = fileManager.createFileAtPath("\(path)/\(name)", contents: data, attributes: nil)
+        let file = File(absoluteURL: pathURL.URLByAppendingPathComponent(name))
+        let realm = try! Realm(path: realmPath)
         
-        print(result)
+        try! realm.write { () -> Void in
+            let count = realm.objects(File).filter("fileName = '\(file.fileName!)'").count
+            if count == 0 {
+                realm.add(file)
+            }
+        }
+        
         return result
     }
     
-    public static func deleteFile(name:String) {
+    public static func deleteFile(deletedFile:File) {
         do{
-            print(path)
-            print(name)
-            try fileManager.removeItemAtPath("\(path)/\(name)")
+            print(deletedFile.filePath)
+            try fileManager.removeItemAtPath(deletedFile.filePath!)
+            let realm = try! Realm(path: realmPath)
+            
+            try! realm.write({ () -> Void in
+                realm.delete(deletedFile)
+            })
             
         }catch{
             print("deleteFile erro")
@@ -47,23 +67,36 @@ public class SharedContainer{
     }
     
     public static func getFileList() -> [File] {
+        let realm = try! Realm(path: realmPath)
+        let fileList = realm.objects(File).sorted("index")
         var result = [File]()
-        var names:[String]
-        do{
-            names = try fileManager.contentsOfDirectoryAtPath(path)
-            for name in names {
-                let file = File(absoluteURL: pathURL.URLByAppendingPathComponent(name))
-                result.append(file)
-            }
-            return result
-        }catch{
-            print("getFileNameList erro")
+        for file in fileList {
+            result.append(file)
         }
         return result
     }
     
-    public static func getFileData(name:String) -> NSData {
-        return NSData(contentsOfURL: pathURL.URLByAppendingPathComponent(name))!
+    public static func swap(from:Int,to:Int){
+        print(from)
+        print(to)
+        let realm = try! Realm(path: realmPath)
+        try! realm.write { () -> Void in
+            let fromFile = realm.objects(File).filter("index == \(from)").first!
+            let toFile = realm.objects(File).filter("index == \(to)").first!
+            let tempIndex = toFile.index
+            if fromFile.index < toFile.index {
+                for file in realm.objects(File).filter("index > \(fromFile.index) and index <= \(toFile.index)") {
+                    file.index--
+                }
+            } else {
+                for file in realm.objects(File).filter("index >= \(toFile.index) and index < \(fromFile.index)") {
+                    file.index++
+                }
+            }
+            fromFile.index = tempIndex
+            
+        }
+        
     }
     
     public static func getFileData(absolutePath:NSURL) -> NSData{

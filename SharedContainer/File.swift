@@ -7,7 +7,10 @@
 //
 
 import Foundation
-public class File {
+import RealmSwift
+import Realm
+
+public class File:Object {
     
     public static let TYPE_IMAGE = "TYPE_IMAGE"
     public static let TYPE_AUDIO = "TYPE_AUDIO"
@@ -23,18 +26,31 @@ public class File {
     
     public static let TYPE_ELSE = "TYPE_ELSE"
     
-    public var fileName:String?
-    public var filePath:String?
-    public var filePathURL:NSURL?
-    public var suffix:String?
-    public var type:String?
+    static let groupID = "group.com.100tv.TransPadQ"
+    static let folderPath = "Library/Caches"
+    static let fileManager = NSFileManager.defaultManager()
+    static let pathURL = fileManager.containerURLForSecurityApplicationGroupIdentifier(groupID)!.URLByAppendingPathComponent(folderPath)
+    static let realmPath = pathURL.URLByAppendingPathComponent("share.realm").path!
+    
+    dynamic public var index = 0
+    dynamic public var fileName:String?
+    dynamic public var filePath:String?
+    dynamic public var filePathURL:String?
+    dynamic public var suffix:String?
+    dynamic public var type:String?
     
     init(absoluteURL:NSURL){
-        
-        filePathURL = absoluteURL
+        super.init()
+        let r = try! Realm(path: File.realmPath)
+        if let maxIndex = r.objects(File).sorted("index").last?.index {
+            index = maxIndex + 1
+        }else{
+            index = 0
+        }
+        filePathURL = absoluteURL.absoluteString
         filePath = absoluteURL.path
-        fileName = self.filePath?.componentsSeparatedByString("/").last
-        suffix = self.fileName?.componentsSeparatedByString(".").last?.lowercaseString
+        fileName = filePath?.componentsSeparatedByString("/").last
+        suffix = absoluteURL.pathExtension!.lowercaseString
         
         switch (suffix!) {
             
@@ -64,5 +80,11 @@ public class File {
         }
     }
     
+    required public init() {
+        super.init()
+    }
     
+    override init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
 }
