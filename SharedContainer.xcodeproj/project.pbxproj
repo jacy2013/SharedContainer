@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A406700B82BF4C8AB8D4193 /* Pods_SharedContainer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B91ED5D36B6B269006A5D3D /* Pods_SharedContainer.framework */; };
 		244A83151C7C62DA005A91F8 /* SharedContainer.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 244A83141C7C62DA005A91F8 /* SharedContainer.podspec */; };
 		24AFE7C91C5EF3740090126F /* SharedContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 24AFE7C81C5EF3740090126F /* SharedContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		24AFE7D11C5EF37F0090126F /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AFE7D01C5EF37F0090126F /* File.swift */; };
@@ -14,12 +15,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0EAC90A4B7FFF0D8C80BC000 /* Pods-SharedContainer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedContainer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SharedContainer/Pods-SharedContainer.debug.xcconfig"; sourceTree = "<group>"; };
 		244A83141C7C62DA005A91F8 /* SharedContainer.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SharedContainer.podspec; sourceTree = "<group>"; };
 		24AFE7C51C5EF3740090126F /* SharedContainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedContainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24AFE7C81C5EF3740090126F /* SharedContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedContainer.h; sourceTree = "<group>"; };
 		24AFE7CA1C5EF3740090126F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24AFE7D01C5EF37F0090126F /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		24AFE7D21C5EF38B0090126F /* SharedContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedContainer.swift; sourceTree = "<group>"; };
+		8B91ED5D36B6B269006A5D3D /* Pods_SharedContainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SharedContainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E040E9C18EDEA6BE443542B0 /* Pods-SharedContainer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedContainer.release.xcconfig"; path = "Pods/Target Support Files/Pods-SharedContainer/Pods-SharedContainer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A406700B82BF4C8AB8D4193 /* Pods_SharedContainer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,7 +43,9 @@
 			children = (
 				24AFE7C71C5EF3740090126F /* SharedContainer */,
 				24AFE7C61C5EF3740090126F /* Products */,
+				ED35F140C3C36CE40D4FE2FC /* Pods */,
 				244A83141C7C62DA005A91F8 /* SharedContainer.podspec */,
+				6B1461DBA70EC1CF51BE29C2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,6 +68,23 @@
 			path = SharedContainer;
 			sourceTree = "<group>";
 		};
+		6B1461DBA70EC1CF51BE29C2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B91ED5D36B6B269006A5D3D /* Pods_SharedContainer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED35F140C3C36CE40D4FE2FC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0EAC90A4B7FFF0D8C80BC000 /* Pods-SharedContainer.debug.xcconfig */,
+				E040E9C18EDEA6BE443542B0 /* Pods-SharedContainer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -79,10 +103,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24AFE7CD1C5EF3740090126F /* Build configuration list for PBXNativeTarget "SharedContainer" */;
 			buildPhases = (
+				866DA3DB8FB7790C94384584 /* Check Pods Manifest.lock */,
 				24AFE7C01C5EF3740090126F /* Sources */,
 				24AFE7C11C5EF3740090126F /* Frameworks */,
 				24AFE7C21C5EF3740090126F /* Headers */,
 				24AFE7C31C5EF3740090126F /* Resources */,
+				9D58926325619FEABBB81C7D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -134,6 +160,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		866DA3DB8FB7790C94384584 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9D58926325619FEABBB81C7D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SharedContainer/Pods-SharedContainer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		24AFE7C01C5EF3740090126F /* Sources */ = {
@@ -239,6 +298,7 @@
 		};
 		24AFE7CE1C5EF3740090126F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0EAC90A4B7FFF0D8C80BC000 /* Pods-SharedContainer.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
@@ -257,6 +317,7 @@
 		};
 		24AFE7CF1C5EF3740090126F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E040E9C18EDEA6BE443542B0 /* Pods-SharedContainer.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;

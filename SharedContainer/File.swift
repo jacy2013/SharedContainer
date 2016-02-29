@@ -8,7 +8,7 @@
 
 import Foundation
 import RealmSwift
-//import Realm
+import Realm
 
 public class File:Object {
     
