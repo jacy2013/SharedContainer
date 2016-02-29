@@ -15,10 +15,13 @@ public class File:Object {
     public static let TYPE_IMAGE = "TYPE_IMAGE"
     public static let TYPE_AUDIO = "TYPE_AUDIO"
     public static let TYPE_VIDEO = "TYPE_VIDEO"
-    public static let TYPE_DATA = "TYPE_DATA"
+    //    public static let TYPE_DATA = "TYPE_DATA"
     public static let TYPE_DOC = "TYPE_DOC"
     public static let TYPE_PPT = "TYPE_PPT"
     public static let TYPE_XLS = "TYPE_XLS"
+    public static let TYPE_OUTLOOK = "TYPE_OUTLOOK"
+    public static let TYPE_ONENOTE = "TYPE_ONENOTE"
+    public static let TYPE_ACCESS = "TYPE_ACCESS"
     public static let TYPE_HTML = "TYPE_HTML"
     public static let TYPE_PUB = "TYPE_PUB"
     public static let TYPE_PDF = "TYPE_PDF"
@@ -54,26 +57,32 @@ public class File:Object {
         
         switch (suffix!) {
             
-        case "jpg","jpeg","png" :
+        case "jpg","jpeg","png","bmp","gif" :
             type = File.TYPE_IMAGE
         case "mp3","wma" :
             type = File.TYPE_AUDIO
-        case "mp4","wmv","avi","mpeg":
+        case "mp4","wmv","avi","aiff","mov","mpeg","mpg" :
             type = File.TYPE_VIDEO
         case "txt":
             type = File.TYPE_TXT
-        case "doc","docx":
+        case "doc","docx","wps":
             type = File.TYPE_DOC
-        case "ppt","pptx":
+        case "ppt","pptx","dps":
             type = File.TYPE_PPT
-        case "xls","xlsx":
+        case "xls","xlsx","et":
             type = File.TYPE_XLS
-        case "html":
+        case "html","htm","xhtml","asp","aspx","php","jsp":
             type = File.TYPE_HTML
         case "pub":
             type = File.TYPE_PUB
         case "pdf":
             type = File.TYPE_PDF
+        case "mdb":
+            type = File.TYPE_ACCESS
+        case "one":
+            type = File.TYPE_ONENOTE
+        case "oft","msg":
+            type = File.TYPE_OUTLOOK
         default:
             type = File.TYPE_ELSE
             break
