@@ -11,7 +11,7 @@ import RealmSwift
 
 public class SharedContainer{
     
-    static let groupID = "group.com.100tv.TransPadQ"
+    static let groupID = "group.com.100tv.TransPadQ-AOC"
     static let folderPath = "Library/Caches"
     static let fileManager = FileManager.default
     static let pathURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: groupID)!.appendingPathComponent(folderPath)
