@@ -29,7 +29,7 @@ open class File : RealmSwift.Object{
     
     open static let TYPE_ELSE = "TYPE_ELSE"
     
-    static let groupID = "group.com.100tv.TransPadQ-AOC"
+    static let groupID = "group.com.100tv.TransPadQ-Phi"
     static let folderPath = "Library/Caches"
     static let fileManager = FileManager.default
     static let pathURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: groupID)?.appendingPathComponent(folderPath)
