@@ -10,50 +10,50 @@ import Foundation
 import RealmSwift
 import Realm
 
-public class File:Object {
+open class File : RealmSwift.Object{
     
-    public static let TYPE_IMAGE = "TYPE_IMAGE"
-    public static let TYPE_AUDIO = "TYPE_AUDIO"
-    public static let TYPE_VIDEO = "TYPE_VIDEO"
+    open static let TYPE_IMAGE = "TYPE_IMAGE"
+    open static let TYPE_AUDIO = "TYPE_AUDIO"
+    open static let TYPE_VIDEO = "TYPE_VIDEO"
     //    public static let TYPE_DATA = "TYPE_DATA"
-    public static let TYPE_DOC = "TYPE_DOC"
-    public static let TYPE_PPT = "TYPE_PPT"
-    public static let TYPE_XLS = "TYPE_XLS"
-    public static let TYPE_OUTLOOK = "TYPE_OUTLOOK"
-    public static let TYPE_ONENOTE = "TYPE_ONENOTE"
-    public static let TYPE_ACCESS = "TYPE_ACCESS"
-    public static let TYPE_HTML = "TYPE_HTML"
-    public static let TYPE_PUB = "TYPE_PUB"
-    public static let TYPE_PDF = "TYPE_PDF"
-    public static let TYPE_TXT = "TYPE_TXT"
+    open static let TYPE_DOC = "TYPE_DOC"
+    open static let TYPE_PPT = "TYPE_PPT"
+    open static let TYPE_XLS = "TYPE_XLS"
+    open static let TYPE_OUTLOOK = "TYPE_OUTLOOK"
+    open static let TYPE_ONENOTE = "TYPE_ONENOTE"
+    open static let TYPE_ACCESS = "TYPE_ACCESS"
+    open static let TYPE_HTML = "TYPE_HTML"
+    open static let TYPE_PUB = "TYPE_PUB"
+    open static let TYPE_PDF = "TYPE_PDF"
+    open static let TYPE_TXT = "TYPE_TXT"
     
-    public static let TYPE_ELSE = "TYPE_ELSE"
+    open static let TYPE_ELSE = "TYPE_ELSE"
     
     static let groupID = "group.com.100tv.TransPadQ"
     static let folderPath = "Library/Caches"
-    static let fileManager = NSFileManager.defaultManager()
-    static let pathURL = fileManager.containerURLForSecurityApplicationGroupIdentifier(groupID)!.URLByAppendingPathComponent(folderPath)
-    static let realmPath = pathURL.URLByAppendingPathComponent("share.realm").path!
+    static let fileManager = FileManager.default
+    static let pathURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: groupID)?.appendingPathComponent(folderPath)
+    static let realmPath = pathURL?.appendingPathComponent("share.realm").path
     
-    dynamic public var index = 0
-    dynamic public var fileName:String?
-    dynamic public var filePath:String?
-    dynamic public var filePathURL:String?
-    dynamic public var suffix:String?
-    dynamic public var type:String?
+    dynamic open var index = 0
+    dynamic open var fileName:String?
+    dynamic open var filePath:String?
+    dynamic open var filePathURL:String?
+    dynamic open var suffix:String?
+    dynamic open var type:String?
     
-    init(absoluteURL:NSURL){
+    init(absoluteURL:URL){
         super.init()
-        let r = try! Realm(path: File.realmPath)
-        if let maxIndex = r.objects(File).sorted("index").last?.index {
+        let r = try! Realm(fileURL: URL(fileURLWithPath: File.realmPath!))
+        if let maxIndex = r.objects(File.self).sorted(byProperty: "index").last?.index {
             index = maxIndex + 1
         }else{
             index = 0
         }
         filePathURL = absoluteURL.absoluteString
         filePath = absoluteURL.path
-        fileName = filePath?.componentsSeparatedByString("/").last
-        suffix = absoluteURL.pathExtension!.lowercaseString
+        fileName = filePath?.components(separatedBy: "/").last
+        suffix = absoluteURL.pathExtension.lowercased()
         
         switch (suffix!) {
             
@@ -93,7 +93,11 @@ public class File:Object {
         super.init()
     }
     
-    override init(realm: RLMRealm, schema: RLMObjectSchema) {
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
         super.init(realm: realm, schema: schema)
+    }
+    
+    required public init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
     }
 }
